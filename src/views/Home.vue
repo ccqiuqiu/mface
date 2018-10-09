@@ -1,18 +1,44 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <air-scroll ref="scroll" pullDownRefresh @pullingDown="load" md>
+    <yd-button type="primary">安缪</yd-button>
+    <p class="p-4 f-11">ww</p>
+    <p>{{hehe}}</p>
+    <p>ww</p>
+    <p>ww</p>
+    <p>ww</p>
+    <p>ww</p>
+    <p>ww</p>
+    <p>ww</p>
+    <p>ww</p>
+    <p>ww</p>
+    <p>ww</p>
+    <p>ww</p>
+    <p>ww</p>
+    <p>ww</p>
+    <p>ww</p>
+    <p>ww</p>
+    <p>ww</p>
+    <p>ww</p>
+    <p>ww</p>
+    <p>ww</p>
+    <p>ww</p>
+    <p>ww</p>
+    <p>ww</p>
+    <p>ww</p>
+    <p>ww</p>
+    <p>ww</p>
+  </air-scroll>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import { Component, Vue } from 'vue-property-decorator'
 
-export default {
-  name: 'home',
-  components: {
-    HelloWorld
+@Component
+export default class Home extends Vue {
+  hehe = 'hehe'
+
+  load() {
+    setTimeout(() => this.$refs.scroll.forceUpdate(true), 2000)
   }
 }
 </script>

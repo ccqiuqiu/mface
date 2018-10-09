@@ -1,0 +1,225 @@
+/**
+ * Created by 熊超超 on 2017/8/4.
+ */
+@import "line";
+
+
+html, body {
+  /*禁用横向滚动*/
+  overflow-x: hidden;
+  width: 100%;
+  /*取消部分浏览器点击有阴影*/
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  /*优化移动端滚动事件*/
+  -webkit-overflow-scrolling: touch;
+  overflow-scrolling: touch;
+}
+
+body {
+  /*设置网页基本字体颜色*/
+  color: @base-color;
+  background: @bg-color;
+}
+
+/**
+ * 移除常用标签的浏览器默认的「margin、padding」
+ */
+body, p, h1, h2, h3, h4, h5, h6, dl, dd, ul, ol, th, td, button, figure, input, textarea, form {
+  margin: 0;
+  padding: 0;
+}
+/**
+ * 不同浏览器的 input、select、textarea 的盒子模型宽度计算方式不同，统一为最常见的 content-box
+ */
+input, select, textarea {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+/**
+ * 移除浏览器部分元素的默认边框
+ */
+img, input, button, textarea {
+  border: none;
+  -webkit-appearance: none;
+}
+
+input {
+  /*由于 input 默认不继承父元素的居中样式，所以设置：「text-align: inherit」*/
+  text-align: inherit;
+}
+/**
+* 由于以下元素的部分属性没有继承父节点样式，所以声明这些元素的这些属性为父元素的属性
+* 取消这些元素 `outline` 样式
+*/
+a, h1, h2, h3, h4, h5, h6, input, select, button, option, textarea, optgroup {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  font-style: inherit;
+  line-height: inherit;
+  color: inherit;
+  outline: none;
+}
+/*取消 ol，ul 默认列表样式*/
+ol, ul {
+  list-style: none;
+}
+/*鼠标小手*/
+.cp{
+  cursor: pointer;
+}
+/* 单行文本溢出显示省略号「to ==> text-overflow」*/
+.to {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+/*取消部分浏览器数字输入控件的操作按钮*/
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  margin: 0;
+  -webkit-appearance: none;
+}
+/*取消火狐浏览器部分版本 input 聚焦时默认的「padding、border」*/
+input::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+
+html, body, #app {
+  height: 100%;
+}
+
+#app{
+  .content-view {
+    position: relative;
+    >div{
+      background-color: white;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      overflow: hidden;
+    }
+  }
+
+
+  // 生成从2-300，步进为2的间距样式
+  .generate-space(300);
+  .generate-space(@n, @i: 0) when (@i =< @n) {
+    .generate-space(@n, (@i + 2));
+    // margin
+    .m-@{i} {
+      margin-left: @i/@rem;
+      margin-right: @i/@rem;
+      margin-top: @i/@rem;
+      margin-bottom: @i/@rem;
+    }
+    .m-v-@{i} {
+      margin-top: @i/@rem;
+      margin-bottom: @i/@rem;
+    }
+    .m-h-@{i} {
+      margin-left: @i/@rem;
+      margin-right: @i/@rem;
+    }
+    .m-t-@{i} {
+      margin-top: @i/@rem;
+    }
+    .m-b-@{i} {
+      margin-bottom: @i/@rem;
+    }
+    .m-l-@{i} {
+      margin-left: @i/@rem;
+    }
+    .m-r-@{i} {
+      margin-right: @i/@rem;
+    }
+    // padding
+    .p-@{i} {
+      padding-left: @i/@rem;
+      padding-right: @i/@rem;
+      padding-top: @i/@rem;
+      padding-bottom: @i/@rem;
+    }
+    .p-v-@{i} {
+      padding-top: @i/@rem;
+      padding-bottom: @i/@rem;
+    }
+    .p-h-@{i} {
+      padding-left: @i/@rem;
+      padding-right: @i/@rem;
+    }
+    .p-t-@{i} {
+      padding-top: @i/@rem;
+    }
+    .p-b-@{i} {
+      padding-bottom: @i/@rem;
+    }
+    .p-l-@{i} {
+      padding-left: @i/@rem;
+    }
+    .p-r-@{i} {
+      padding-right: @i/@rem;
+    }
+  }
+  // 20, 18, 17, 16,14 13, 11(pt)
+  // 说明文本，如版权等
+  .f-11{
+    font-size: 11 * @font;
+  }
+  .f-12{
+    font-size: 12 * @font;
+  }
+  // 辅助信息,需弱化的信息，如链接，小按钮
+  .f-13{
+    font-size: 13 * @font;
+  }
+  // 次要描述信息,服务于首要信息并与之关联，如列表摘要
+  .f-14{
+    font-size: 14 * @font;
+  }
+  .f-16{
+    font-size: 16 * @font;
+  }
+  // 首要层次信息，如列表标题，消息气泡
+  .f-17{
+    font-size: 17 * @font;
+  }
+  // 大按钮字体
+  .f-18{
+    font-size: 18 * @font;
+  }
+  // 页面大标题，一般用于结果，空状态等信息单一页面
+  .f-20{
+    font-size: 20 * @font;
+  }
+  // 只能为阿拉伯文字信息，如金额、时间
+  .f-40{
+    font-size: 40 * @font;
+  }
+
+  .b-b{
+    border-bottom: 1Px solid @color-border;
+  }
+  .a-c{
+    text-align: center;
+  }
+  .a-l{
+    text-align: left;
+  }
+  .a-r{
+    text-align: right;
+  }
+  .c-sub{
+    color: @color-sub;
+  }
+  .c-p{
+    color: @color-primary;
+  }
+}
+

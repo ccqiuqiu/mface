@@ -1,0 +1,108 @@
+/**
+ * Created by 熊超超 on 2017/8/4.
+ */
+@import "vars";
+
+/* 细线边框 */
+.baseLine{
+  content: " ";
+  position: absolute;
+  transform: scaleY(0.5);
+  z-index: -1;
+}
+.setTopLine(@c: @border-color) {
+  .baseLine;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: 1px;
+  border-top: 1px solid @c;
+  color: @c;
+  transform-origin: 0 0;
+}
+.setBottomLine(@c: @border-color) {
+  .baseLine;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 1px;
+  border-bottom: 1px solid @c;
+  color: @c;
+  transform-origin: 0 100%;
+}
+.setLeftLine(@c: @border-color) {
+  .baseLine;
+  left: 0;
+  top: 0;
+  width: 1px;
+  bottom: 0;
+  border-left: 1px solid @c;
+  color: @c;
+  transform-origin: 0 0;
+}
+.setRightLine(@c: @border-color) {
+  .baseLine;
+  right: 0;
+  top: 0;
+  width: 1px;
+  bottom: 0;
+  border-right: 1px solid @c;
+  color: @c;
+  transform-origin: 100% 0;
+}
+.setLine(@c: @border-color, @radius: 0) {
+  .baseLine;
+  left: 0;
+  top: 0;
+  width: 200%;
+  border: 1px solid @c;
+  color: @c;
+  height: 200%;
+  transform-origin: left top;
+  border-radius: @radius;
+}
+.b-o, .b-h, .b-v, .b-l, .b-r, .b-t, .b-b {
+  position: relative;
+}
+.b-o {
+  &:before {
+    .setLine();
+  }
+}
+.b-t {
+  &:before {
+    .setTopLine();
+  }
+}
+.b-b {
+  &:after {
+    .setBottomLine();
+  }
+}
+.b-l {
+  &:before {
+    .setLeftLine();
+  }
+}
+.b-r {
+  &:after {
+    .setRightLine();
+  }
+}
+.b-h {
+  &:before {
+    .setLeftLine();
+  }
+  &:after {
+    .setRightLine();
+  }
+}
+.b-v {
+  &:before {
+    .setTopLine();
+  }
+  &:after {
+    .setBottomLine();
+  }
+}
+/* 细线边框 EDN */
